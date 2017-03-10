@@ -33,9 +33,3 @@
         background: #eceff1;
         border-radius: 9999px;
     }
-
-@media (min-width: 340px) {
-    .Filter {
-        justify-content: center;
-    }
-}
