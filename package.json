@@ -27,8 +27,10 @@
     "babel-runtime": "^6.23.0",
     "classnames": "^2.2.5",
     "normalize.css": "^5.0.0",
+    "perfect-scrollbar": "^0.6.16",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-flip-move": "^2.9.1",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
