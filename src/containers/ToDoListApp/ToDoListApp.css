@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+:root {
+    font: 100%/1 sans-serif;
+    color: #484848;
+    background: #f5f5f5;
+}
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.AppContainer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1em;
+    display: flex;
+}
+
+.ToDoApp {
+    margin: 0 auto;
+    max-width: 580px;
+    width: 100%;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+    .ToDoApp > * {
+        flex: 0 0 auto;
+    }

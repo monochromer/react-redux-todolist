@@ -1,0 +1,41 @@
+.Filter {
+    margin-bottom: 1em;
+    position: relative;
+    padding: 1em .5em;
+    border: 1px solid #ececec;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;;
+    justify-content: flex-start;
+    border-radius: 2px;
+    color: #8c8c8c;
+    background: #fff;
+}
+
+.FilterItem {
+    margin: 0 .25em;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+}
+
+    .FilterItem-Count {
+        margin-left: -0.5em;
+        box-sizing: border-box;
+        flex: 0 0 auto;
+        padding: 0 12px;
+        text-align: center;
+        height: 2em;
+        line-height: 2em;
+        min-width: 2em;
+        font-size: .6em;
+        color: #7c939f;
+        background: #eceff1;
+        border-radius: 9999px;
+    }
+
+@media (min-width: 340px) {
+    .Filter {
+        justify-content: center;
+    }
+}
