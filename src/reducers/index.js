@@ -26,26 +26,37 @@ const todo = (state = {}, action) => {
     }
 }
 
-const todos = (state = [], action) => {
+const todosById = (state = {}, action) => {
     switch (action.type) {
         case constants.TODO_ADD:
-            return [
-                ...state,
-                todo(undefined, action)
-            ];
-
         case constants.TODO_TOGGLE:
-            return state.map(t => todo(t, action));
+            return {
+                ...state,
+                [action.id]: todo(state[action.id], action)
+            };
 
         case constants.TODO_DELETE:
-            return state.filter(todo => todo.id !== action.id);
+            let curState = Object.assign({}, state);
+            delete curState[action.id];
+            return curState;
 
         default:
             return state;
     }
 }
 
-const filter = (state = 'SHOW_ALL', action) => {
+const todosIds = (state = [], action) => {
+    switch (action.type) {
+        case constants.TODO_ADD:
+            return [...state, action.id];
+        case constants.TODO_DELETE:
+            return state.filter(id => id !== action.id);
+        default:
+            return state;
+    }
+};
+
+const filter = (state = 'ALL', action) => {
     switch (action.type) {
         case filterConstants.TODO_FILTER_CHANGE:
             return action.filter;
@@ -55,29 +66,30 @@ const filter = (state = 'SHOW_ALL', action) => {
     }
 }
 
-// const root = (state = {}, action) => ({
-//     todos: todos(state.todos, action),
-//     filter: filter(state.filter, action)
-// });
-
 const root = combineReducers({
-    todos,
+    todosById,
+    todosIds,
     filter
 });
 
 export default root;
 
 // todos selector
+const getAllTodos = (state) => {
+    return state.todosIds.map(id => state.todosById[id]);
+};
+
 export const filterTodos = (state, filter) => {
+    const allTodos = getAllTodos(state);
     switch(filter) {
-        case 'completed':
-            return state.filter(todo => todo.completed);
+        case 'COMPLETED':
+            return allTodos.filter(todo => todo.completed);
 
-        case 'active':
-            return state.filter(todo => !todo.completed);
+        case 'ACTIVE':
+            return allTodos.filter(todo => !todo.completed);
 
-        case 'all':
+        case 'ALL':
         default:
-            return state;
+            return allTodos;
     }
-}
+};

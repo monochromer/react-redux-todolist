@@ -25,16 +25,29 @@ class ToDoApp extends Component {
 
     render() {
         const { addTodo } = this.props.todoActions;
-        const filteredTodos = filterTodos(this.props.todos, this.props.filter);
+        const { todos, filter, state } = this.props;
+        const filteredTodos = filterTodos(state, filter);
 
         return (
             <div className="ToDoApp">
                 <AddForm onSubmit={addTodo} />
                 <Filter
                     filters={[
-                        {status: 'all',       text: 'Все', count: filterTodos(this.props.todos, "all").length},
-                        {status: 'completed', text: 'Завершенные', count: filterTodos(this.props.todos, "completed").length},
-                        {status: 'active',    text: 'В процессе', count: filterTodos(this.props.todos, "active").length}
+                        {
+                            status: 'ALL',
+                            text: 'Все',
+                            count: filterTodos(state, 'ALL').length
+                        },
+                        {
+                            status: 'COMPLETED',
+                            text: 'Завершенные',
+                            count: filterTodos(state, 'COMPLETED').length
+                        },
+                        {
+                            status: 'ACTIVE',
+                            text: 'В процессе',
+                            count: filterTodos(state, 'ACTIVE').length
+                        }
                     ]}
                     currentFilter={this.props.filter}
                     filterActions={this.props.filterActions}
@@ -49,7 +62,8 @@ class ToDoApp extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    todos: state.todos,
+    state,
+    // todos: state.todosIds.map(id => state.todosById[id]),
     filter: state.filter
 });
 
