@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
+import cx from 'classnames';
 import './Controls.css';
-
-const cx = classnames;
 
 export const Control = (props) => {
     const content = !!props.children ? props.children : props.text;
