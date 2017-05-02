@@ -12,7 +12,8 @@
 
     .ToDoList-Item {}
 
-    .ToDoList:empty::before {
+    .ToDoList:empty::before,
+    .ToDoList > div:empty::before {
         content: 'Список пуст';
         margin: auto;
         padding: 0.5em 1em;
