@@ -14,7 +14,7 @@ const Todo = (props) => {
             />
             <div className='Todo-Text'>{props.children}</div>
             <button className='Todo-Delete'
-                title="Delete Todo"
+                title="Удалить задачу"
                 type='button'
                 onClick={props.onDelete}
             ></button>
