@@ -14,7 +14,7 @@ const configureStore = () => {
         // applyMiddleware(thunk)
     );
 
-    store.subscribe(throttle(() => API.save(store.getState())));
+    store.subscribe(throttle(() => API.save(store.getState()), 300));
 
     return store;
 }
