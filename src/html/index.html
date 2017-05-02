@@ -5,8 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Список задач</title>
+    <style>
+        .Loader,
+        .Loader::before {
+            position: fixed;
+            top:    0;
+            bottom: 0;
+            left:   0;
+            right:  0;
+            margin: auto;
+        }
+
+        .Loader {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+            .Loader::before {
+                content: "";
+                font-size: 40px;
+                width:  1em;
+                height: 1em;
+                border: 2px solid #d8d8d8;
+                border-top-color: #1cb9ff;
+                border-radius: 50%;
+                animation: Loader 1s infinite linear;
+            }
+
+            @keyframes Loader {
+                to { transform: rotate(1turn); }
+            }
+    </style>
 </head>
 <body>
-    <div class="AppContainer" id="mount-point"></div>
+    <div class="AppContainer" id="mount-point">
+        <div class="Loader"></div>
+    </div>
 </body>
 </html>
