@@ -15,7 +15,7 @@ var config = {
     output: {
         filename: '[name].[hash].js',
         path: path.join(__dirname, '/build/'),
-        publicPath: '/'
+        publicPath: ''
     },
 
     resolve: {
@@ -71,7 +71,7 @@ var config = {
             filename: 'index.html',
             template: 'html/index.html',
             minify: {
-                collapseWhitespace : true
+                collapseWhitespace : false
             }
         })
     ].concat(isProduction ? [
