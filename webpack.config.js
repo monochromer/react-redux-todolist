@@ -36,7 +36,7 @@ var config = {
         aggregateTimeout: 150
     },
 
-    devtool: isProduction ? false : 'cheap-module-eval-source-map',
+    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
 
     plugins: [
         // не дает перезаписать скрипты при наличии в них ошибок
@@ -52,8 +52,17 @@ var config = {
             }
         }),
 
+        // выделение общего кода из точек входа
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            // filename: 'vendor-[hash].js',
+            minChunks: function (module) {
+                return module.context && module.context.indexOf('node_modules') !== -1;
+            },
+        }),
+
         new ExtractTextPlugin({
-          filename: 'styles.[contenthash].css',
+          filename: '[name].[contenthash].css',
           disable: !isProduction,
           allChunks: true
         }),
