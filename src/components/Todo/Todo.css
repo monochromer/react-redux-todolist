@@ -37,13 +37,15 @@
         transition: .2s;
     }
 
-        .Todo-Delete:hover {
+        .Todo-Delete:hover,
+        .Todo-Delete:focus {
             color: #ec3535;
         }
 
         .Todo-Delete:focus {
             outline: 0;
-            box-shadow: 0 0 0 3px rgba(28, 185, 255, 0.3);
+            /*box-shadow: 0 0 0 3px rgba(28, 185, 255, 0.3);*/
+            box-shadow: 0 0 0 3px rgba(236, 53, 53, 0.3);
         }
 
         .Todo-Delete:before,
