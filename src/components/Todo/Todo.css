@@ -9,6 +9,10 @@
         background: #f6f7f8;
     }
 
+    .Todo:focus-within {
+        background: #f6f7f8;
+    }
+
     .Todo-StatusIcon {
         flex: 0 0 auto;
     }
