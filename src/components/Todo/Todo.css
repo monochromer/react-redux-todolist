@@ -38,6 +38,7 @@
         color: #8c8c8c;
         background: none;
         cursor: pointer;
+        border-radius: 0;
         transition: .2s;
     }
 
