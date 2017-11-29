@@ -8,21 +8,21 @@ const isProduction = NODE_ENV === 'production';
 const isDevelopment = !isProduction;
 
 var config = {
-    context: path.join(__dirname, '/src/'),
+    context: path.join(__dirname, 'src'),
     entry: {
         bundle: './'
     },
     output: {
         filename: '[name].[hash].js',
-        path: path.join(__dirname, '/build/'),
+        path: path.join(__dirname, 'build'),
         publicPath: ''
     },
 
     resolve: {
         modules: [
-          path.join(__dirname, '/src/'),
-          path.join(__dirname, '/src/containers/'),
-          path.join(__dirname, '/src/components/'),
+          path.join(__dirname, 'src'),
+          path.join(__dirname, 'src', 'containers'),
+          path.join(__dirname, 'src', 'components'),
           'node_modules'
         ],
         extensions: ['.js', '.jsx', '.tsx', '.csx', '.coffee']
@@ -122,7 +122,7 @@ var config = {
         host: 'localhost',
         port: '9000',
         contentBase: [
-            path.join(__dirname, '/build/')
+            path.join(__dirname, 'build')
         ],
         hot: true,
         historyApiFallback: true
