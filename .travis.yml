@@ -20,5 +20,3 @@ deploy:
   target_branch: gh-pages
   on:
     branch: master
-
-os: osx
