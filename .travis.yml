@@ -1,4 +1,4 @@
-os: osx
+# os: osx
 
 language: node_js
 
@@ -10,9 +10,9 @@ node_js:
 
 script: npm run build
 
-cache:
-  directories:
-    - "node_modules"
+#cache:
+#  directories:
+#    - "node_modules"
 
 deploy:
   provider: pages
