@@ -109,7 +109,8 @@ class ToDoList extends PureComponent {
     }
 
     componentDidUpdate() {
-        setTimeout(() => { this.ps.update() }, 400);
+        this.ps.update();
+        // setTimeout(() => { this.ps.update() }, 400);
     }
 
     componentWillUnmount() {
