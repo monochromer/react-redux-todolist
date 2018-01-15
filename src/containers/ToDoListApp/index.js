@@ -13,11 +13,6 @@ import Filter from 'components/Filter';
 import ToDoList from 'components/ToDoList';
 
 class ToDoApp extends Component {
-    static PropTypes = {
-        todos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-        filter: React.PropTypes.string,
-        todoActions: React.PropTypes.object.isRequired
-    }
 
     constructor(props, context) {
         super(props, context);

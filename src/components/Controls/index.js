@@ -29,11 +29,3 @@ export const Control = (props) => {
         </label>
     )
 }
-
-Control.propTypes = {
-    type: React.PropTypes.oneOf(['radio', 'checkbox']).isRequired,
-    name: React.PropTypes.string,
-    checked: React.PropTypes.bool,
-    text: React.PropTypes.string,
-    onChange: React.PropTypes.func
-}

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import FlipMove from 'react-flip-move';
-import Ps from 'perfect-scrollbar';
-import 'perfect-scrollbar/dist/css/perfect-scrollbar.css';
+import PerfectScrollbar from 'perfect-scrollbar';
+import 'perfect-scrollbar/css/perfect-scrollbar.css';
 
 import './ToDoList.css';
 import Todo from 'components/Todo';
@@ -30,15 +30,15 @@ import Todo from 'components/Todo';
 
             const newBox = domNode.getBoundingClientRect();
             const oldBox = this.state[key];
-            
-            const deltaX = oldBox.left - newBox.left; 
+
+            const deltaX = oldBox.left - newBox.left;
             const deltaY = oldBox.top  - newBox.top;
 
             requestAnimationFrame( () => {
                 domNode.style.transform  = `translate(${deltaX}px, ${deltaY}px)`;
                 domNode.style.transition = 'transform 0s';
                 domNode.style.transition = '';
-                
+
                 requestAnimationFrame( () => {
                     domNode.style.transform  = '';
                     domNode.style.transition = 'transform 500ms';
@@ -103,18 +103,20 @@ class ToDoList extends Component {
     constructor(props, context) {
         super(props, context)
     }
-    
+
     componentDidMount() {
-        Ps.initialize(this.list);
+        this.ps = new PerfectScrollbar(this.list);
     }
 
     componentDidUpdate() {
-        setTimeout(() => { Ps.update(this.list) }, 400);
+        setTimeout(() => { this.ps.update() }, 400);
     }
 
     componentWillUnmount() {
-        Ps.destroy(this.list);
+        this.ps.destroy();
     }
+
+    getListRef = node => this.list = node;
 
     render() {
         const deleteCallback = this.props.todoActions.deleteTodo;
@@ -132,7 +134,7 @@ class ToDoList extends Component {
         });
 
         return (
-            <div ref={node => this.list = node} className='ToDoList'>
+            <div ref={this.getListRef} className='ToDoList'>
                 <FlipMove
                     duration={400}
                     easing='ease-out'

@@ -14,12 +14,4 @@ const TextInput = (props) => {
     );
 }
 
-TextInput.propTypes = {
-    isFull: React.PropTypes.bool,
-    value: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    placeholder: React.PropTypes.string,
-    name: React.PropTypes.string
-};
-
 export default TextInput;

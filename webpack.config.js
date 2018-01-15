@@ -25,7 +25,7 @@ var config = {
           path.join(__dirname, 'src', 'components'),
           'node_modules'
         ],
-        extensions: ['.js', '.jsx', '.tsx', '.csx', '.coffee']
+        extensions: ['.js', '.jsx', '.tsx']
     },
 //     resolveLoader: {
 //       modules: ['node_modules']
@@ -100,11 +100,6 @@ var config = {
                 exclude: [/node_modules/, /build/]
             },
             {
-                test: /\.jsx$/,
-                use: ['react-hot-loader', 'babel-loader'],
-                exclude: [/node_modules/, /build/]
-            },
-            {
                 test: /\.css$/,
                 exclude: [/build/],
                 use:
@@ -124,7 +119,6 @@ var config = {
         contentBase: [
             path.join(__dirname, 'build')
         ],
-        hot: true,
         historyApiFallback: true
     }
 };
