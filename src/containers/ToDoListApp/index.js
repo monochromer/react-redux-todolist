@@ -8,7 +8,7 @@ import { filterTodos } from 'reducers';
 
 import './ToDoListApp.css';
 
-import AddForm from 'components/AddForm';
+import AddFormContainer from 'containers/AddFormContainer';
 import Filter from 'components/Filter';
 import ToDoList from 'components/ToDoList';
 
@@ -25,7 +25,7 @@ class ToDoApp extends Component {
 
         return (
             <div className="ToDoApp">
-                <AddForm onSubmit={addTodo} />
+                <AddFormContainer />
                 <Filter
                     filters={[
                         {
