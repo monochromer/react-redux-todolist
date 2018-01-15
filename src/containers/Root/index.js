@@ -2,12 +2,12 @@ import React from 'react';
 import {Provider} from 'react-redux';
 
 import 'normalize.css/normalize.css';
-import ToDoListApp from 'containers/ToDoListApp';
+import App from 'containers/App';
 
 const Root = ({ store }) => {
     return (
         <Provider store={store}>
-            <ToDoListApp />
+            <App />
         </Provider>
     );
 }

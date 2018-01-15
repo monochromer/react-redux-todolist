@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import './AddForm.css';
 import TextInput from 'components/TextInput';
 
-class AddForm extends Component {
+class AddForm extends PureComponent {
+    constructor() {
+        super();
+    }
+
     componentDidMount() {
         this.formInputRef.focus();
     }

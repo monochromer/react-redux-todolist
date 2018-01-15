@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import './Filter.css';
 import Control from 'components/Controls';
@@ -23,9 +23,9 @@ const FilterItem = (props) => {
     );
 }
 
-class Filter extends Component {
-    constructor(props, context) {
-        super(props, context)
+class Filter extends PureComponent {
+    constructor() {
+        super()
     }
 
     onChangeHandler = (e) => {

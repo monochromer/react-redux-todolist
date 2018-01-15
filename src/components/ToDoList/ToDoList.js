@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent, Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import FlipMove from 'react-flip-move';
@@ -74,7 +74,7 @@ import Todo from 'components/Todo';
     )
 };*/
 
-class ToDoListItem extends Component {
+class ToDoListItem extends PureComponent {
     constructor(props, context) {
         super(props, context)
     }
@@ -99,7 +99,7 @@ class ToDoListItem extends Component {
     }
 };
 
-class ToDoList extends Component {
+class ToDoList extends PureComponent {
     constructor(props, context) {
         super(props, context)
     }
