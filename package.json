@@ -19,7 +19,7 @@
     "dev-build": "cross-env NODE_ENV=development webpack --colors",
     "prod-build": "cross-env NODE_ENV=production webpack --colors",
     "build": "rm -rf build && npm run prod-build",
-    "server": "static build",
+    "server": "static build --spa --gzip",
     "deploy": "gh-pages -d build"
   },
   "repository": {
