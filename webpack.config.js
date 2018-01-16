@@ -27,9 +27,9 @@ var config = {
         ],
         extensions: ['.js', '.jsx', '.tsx']
     },
-//     resolveLoader: {
-//       modules: ['node_modules']
-//     },
+    resolveLoader: {
+      modules: ['node_modules']
+    },
 
     watch: !isProduction,
     watchOptions: {
