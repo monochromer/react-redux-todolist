@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const NODE_ENV = (process.env.NODE_ENV || 'development').trim();
 const isProduction = NODE_ENV === 'production';
@@ -14,7 +15,7 @@ var config = {
     },
     output: {
         filename: '[name].[hash].js',
-        path: path.join(__dirname, 'build'),
+        path: path.join(__dirname, 'public'),
         publicPath: ''
     },
 
@@ -89,7 +90,9 @@ var config = {
                 drop_console: true,
                 unsafe : true
             }
-        })
+        }),
+
+        new ManifestPlugin()
     ] : []),
 
     module: {
@@ -119,11 +122,11 @@ var config = {
                         }
                     }
                 }],
-                exclude: [/node_modules/, /build/]
+                exclude: [/node_modules/, /public/]
             },
             {
                 test: /\.css$/,
-                exclude: [/build/],
+                exclude: [/public/],
                 use:
                     !isProduction
                         ? ['style-loader', 'css-loader', 'postcss-loader']
@@ -139,7 +142,7 @@ var config = {
         host: 'localhost',
         port: '9000',
         contentBase: [
-            path.join(__dirname, 'build')
+            path.join(__dirname, 'public')
         ],
         historyApiFallback: true
     }
