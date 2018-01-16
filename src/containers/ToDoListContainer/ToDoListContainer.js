@@ -3,34 +3,28 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
 import * as todoActions from 'actions/todoActions';
-import * as filterActions from 'actions/filterActions';
-import { filterTodos } from 'reducers';
+import { memoTodos, filterTodos } from 'reducers';
 
 import ToDoList from 'components/ToDoList';
 
 class ToDoListContainer extends Component {
     render() {
-        const { todos, filter, state } = this.props;
-        const filteredTodos = filterTodos(state, filter);
-
+        const { todos, todoActions } = this.props;
         return (
             <ToDoList
-                todos={filteredTodos}
-                todoActions={this.props.todoActions}
+                todos={todos}
+                todoActions={todoActions}
             />
         )
     }
-}
+};
 
 const mapStateToProps = (state, ownProps) => ({
-    state,
-    // todos: state.todosIds.map(id => state.todosById[id]),
-    filter: state.filter
+    todos: memoTodos(state, ownProps)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    todoActions: bindActionCreators(todoActions, dispatch),
-    filterActions: bindActionCreators(filterActions, dispatch),
+    todoActions: bindActionCreators(todoActions, dispatch)
 });
 
 export default connect(

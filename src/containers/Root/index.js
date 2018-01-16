@@ -2,7 +2,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 
 import 'normalize.css/normalize.css';
-import App from 'containers/App';
+import App from 'components/App';
 
 const Root = ({ store }) => {
     return (

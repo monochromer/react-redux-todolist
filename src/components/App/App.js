@@ -3,15 +3,15 @@ import React from 'react';
 import './App.css';
 
 import AddFormContainer from 'containers/AddFormContainer';
-import FilterContainer from 'containers/FilterContainer';
+import FilterPanel from 'components/FilterPanel';
 import ToDoListContainer from 'containers/ToDoListContainer';
 
 const App = () => {
     return (
         <div className="ToDoApp">
             <AddFormContainer />
-            <FilterContainer/>
-            <ToDoListContainer/>
+            <FilterPanel />
+            <ToDoListContainer />
         </div>
     )
 };
