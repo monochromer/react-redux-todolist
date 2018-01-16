@@ -1,11 +1,8 @@
 import * as filterConstants from 'constants/filterConstants';
+import createReducer from './createReducer';
 
-export const filter = (state = 'ALL', action) => {
-    switch (action.type) {
-        case filterConstants.TODO_FILTER_CHANGE:
-            return action.filter;
-
-        default:
-            return state;
+export const filter = createReducer('ALL', {
+    [filterConstants.TODO_FILTER_CHANGE](state, action) {
+        return action.filter;
     }
-}
+});

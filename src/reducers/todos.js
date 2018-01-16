@@ -1,55 +1,58 @@
 import * as constants from 'constants/todoConstants';
+import createReducer from './createReducer';
 
-export const todo = (state = {}, action) => {
-    switch (action.type) {
-        case constants.TODO_ADD:
-            return {
-                id: action.id,
-                text: action.text,
-                completed: false
-            };
 
-        case constants.TODO_TOGGLE:
-            if (state.id !== action.id) {
-                return state;
-            };
+export const todo = createReducer({}, {
+    [constants.TODO_ADD](state, action) {
+        return {
+            id: action.id,
+            text: action.text,
+            completed: false
+        };
+    },
 
-            return {
-                ...state,
-                completed: !state.completed
-            };
-
-        default:
+    [constants.TODO_TOGGLE](state, action) {
+        if (state.id !== action.id) {
             return state;
+        };
+
+        return {
+            ...state,
+            completed: !state.completed
+        };
     }
-}
+});
 
-export  const todosById = (state = {}, action) => {
-    switch (action.type) {
-        case constants.TODO_ADD:
-        case constants.TODO_TOGGLE:
-            return {
-                ...state,
-                [action.id]: todo(state[action.id], action)
-            };
 
-        case constants.TODO_DELETE:
-            let curState = Object.assign({}, state);
-            delete curState[action.id];
-            return curState;
+export const todosById = createReducer({}, {
+    [constants.TODO_ADD](state, action) {
+        return {
+            ...state,
+            [action.id]: todo(state[action.id], action)
+        };
+    },
 
-        default:
-            return state;
+    [constants.TODO_TOGGLE](state, action) {
+        return {
+            ...state,
+            [action.id]: todo(state[action.id], action)
+        };
+    },
+
+    [constants.TODO_DELETE](state, action) {
+        let curState = Object.assign({}, state);
+        delete curState[action.id];
+        return curState;
     }
-}
+});
 
-export const todosIds = (state = [], action) => {
-    switch (action.type) {
-        case constants.TODO_ADD:
-            return [...state, action.id];
-        case constants.TODO_DELETE:
-            return state.filter(id => id !== action.id);
-        default:
-            return state;
+
+export const todosIds = createReducer([], {
+    [constants.TODO_ADD](state, action) {
+        return [...state, action.id];
+    },
+
+    [constants.TODO_DELETE](state, action) {
+        return state.filter(id => id !== action.id);
     }
-};
+});
