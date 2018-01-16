@@ -8,8 +8,11 @@ const getAllTodos = (state) => {
     return state.todosIds.map(id => state.todosById[id]);
 };
 
-const filterTodos = (state, filter) => {
-    const allTodos = getAllTodos(state);
+const getTodos = (state, props) => getAllTodos(state);
+const getFilterFromState = (state, props) => state.filter;
+const getFilterFromProps = (state, props) => props.filter;
+
+const getMemoFilteredTodos = (allTodos, filter) => {
     switch(filter) {
         case 'COMPLETED':
             return allTodos.filter(todo => todo.completed);
@@ -25,39 +28,13 @@ const filterTodos = (state, filter) => {
 };
 
 const memoTodos = createSelector(
-    function getTodos(state, props) { return getAllTodos(state); },
-    function getFilter(state, props) { return state.filter; },
-    function getMemoFilteredTodos(allTodos, filter) {
-        switch(filter) {
-            case 'COMPLETED':
-                return allTodos.filter(todo => todo.completed);
-
-            case 'ACTIVE':
-                return allTodos.filter(todo => !todo.completed);
-
-            case 'ALL':
-            default:
-                return allTodos;
-        }
-    }
+    [getTodos, getFilterFromState],
+    getMemoFilteredTodos
 );
 
 const memoFilter = createSelector(
-    function getTodos(state, props) { return getAllTodos(state); },
-    function getFilter(state, props) { return props.filter; },
-    function getMemoFilteredTodos(allTodos, filter) {
-        switch(filter) {
-            case 'COMPLETED':
-                return allTodos.filter(todo => todo.completed);
-
-            case 'ACTIVE':
-                return allTodos.filter(todo => !todo.completed);
-
-            case 'ALL':
-            default:
-                return allTodos;
-        }
-    }
+    [getTodos, getFilterFromProps],
+    getMemoFilteredTodos
 );
 
 const rootReducer = combineReducers({
@@ -67,4 +44,4 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-export { filterTodos, memoTodos, memoFilter };
+export { memoTodos, memoFilter };
