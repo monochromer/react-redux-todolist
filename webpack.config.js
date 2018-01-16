@@ -96,7 +96,29 @@ var config = {
         rules: [
             {
                 test: /\.js$/,
-                use: ['babel-loader'],
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        "presets": [
+                            "es2015",
+                            "stage-0",
+                            "react"
+                        ],
+                        "plugins": [
+                            "transform-runtime",
+                            "transform-object-rest-spread",
+                            "transform-es2015-modules-commonjs"
+                        ],
+                        "env": {
+                            "production": {
+                                "plugins": [
+                                    "transform-react-constant-elements",
+                                    "transform-react-inline-elements"
+                                ]
+                            }
+                        }
+                    }
+                }],
                 exclude: [/node_modules/, /build/]
             },
             {
