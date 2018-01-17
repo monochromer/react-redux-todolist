@@ -100,9 +100,6 @@ class ToDoListItem extends PureComponent {
 };
 
 class ToDoList extends PureComponent {
-    constructor(props, context) {
-        super(props, context)
-    }
 
     componentDidMount() {
         this.ps = new PerfectScrollbar(this.list);

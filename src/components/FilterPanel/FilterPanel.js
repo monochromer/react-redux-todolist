@@ -12,12 +12,12 @@ const FilterPanel = () => {
     return (
         <div className='Filter'>
             {
-                filterData.map(({filter, ...props}) => {
+                filterData.map(({filter, ...rest}) => {
                     return (
                         <FilterItemContainer
                             key={filter}
                             filter={filter}
-                            {...props}
+                            {...rest}
                         />
                     )
                 })

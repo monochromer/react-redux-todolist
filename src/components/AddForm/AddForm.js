@@ -4,9 +4,6 @@ import './AddForm.css';
 import TextInput from 'components/TextInput';
 
 class AddForm extends PureComponent {
-    constructor() {
-        super();
-    }
 
     componentDidMount() {
         this.formInputRef.focus();
