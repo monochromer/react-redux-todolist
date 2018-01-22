@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import { todo, todosById, todosIds} from './todos';
+import { todo, todosById, todosIds } from './todos';
 import { filter } from './filter';
+import * as filterTypes from 'constants/filterConstants';
 import { createSelector } from 'reselect'
 
 // todos selector

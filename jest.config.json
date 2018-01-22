@@ -1,0 +1,12 @@
+{
+    "verbose": true,
+    "modulePaths": [
+        "src",
+        "src/containers",
+        "src/components"
+    ],
+    "setupFiles": ["./test/jestsetup.js"],
+    "moduleNameMapper": {
+        "^.+\\.(css|scss)$": "identity-obj-proxy"
+    }
+}
