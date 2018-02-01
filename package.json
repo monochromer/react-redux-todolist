@@ -1,6 +1,6 @@
 {
   "name": "react-redux-todolist",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Пример приложения 'Список дел' на React и Redux",
   "author": "monochromer@mail.ru",
   "homepage": "https://github.com/monochromer/react-redux-todolist#readme",
@@ -15,15 +15,17 @@
     "npm": ">=5.4"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --hot --watch --inline --colors",
+    "start": "npm run server",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --watch --inline --colors",
     "dev-build": "cross-env NODE_ENV=development webpack --colors",
     "prod-build": "cross-env NODE_ENV=production webpack --colors",
     "build": "rm -rf build && npm run prod-build && npm run storybook:build",
-    "server": "static public --spa --gzip",
+    "server": "node server.js",
     "deploy": "gh-pages -d public",
     "storybook:dev": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o public/storybook",
-    "test": "jest --config jest.config.json"
+    "test": "jest --config jest.config.json",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -36,7 +38,9 @@
     "babel-polyfill": "6.26.0",
     "babel-runtime": "6.26.0",
     "classnames": "2.2.5",
-    "node-static": "0.7.10",
+    "compression": "1.7.1",
+    "express": "4.16.2",
+    "helmet": "3.10.0",
     "normalize.css": "7.0.0",
     "perfect-scrollbar": "1.3.0",
     "react": "16.2.0",
