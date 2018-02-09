@@ -112,18 +112,44 @@ var config = {
                         ? [
                             'style-loader',
                             {
-                                loader: 'css-loader', 
-                                options:{
+                                loader: 'css-loader',
+                                options: {
                                     minimize: true
                                 }
-                            },                            
+                            },
                             'postcss-loader'
                         ]
                         : ExtractTextPlugin.extract({
                             fallback: 'style-loader',
                             use: ['css-loader', 'postcss-loader']
                         })
-            }
+            },
+            {
+                test: /\.(jpe?g|png|gif)$/,
+                loader: 'url-loader',
+                options: {
+                    // Inline files smaller than 10 kB (10240 bytes)
+                    limit: 10 * 1024,
+                },
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-url-loader',
+                options: {
+                    // Inline files smaller than 10 kB (10240 bytes)
+                    limit: 10 * 1024,
+                    // Remove the quotes from the url
+                    // (they’re unnecessary in most cases)
+                    noquotes: true,
+                },
+            },
+            // compresses images
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                loader: 'image-webpack-loader',
+                // This will apply the loader before the other ones
+                enforce: 'pre',
+            },
         ]
     },
 
