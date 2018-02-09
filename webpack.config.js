@@ -14,7 +14,7 @@ var config = {
         bundle: './'
     },
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].[chunkhash].js',
         path: path.join(__dirname, 'public'),
         publicPath: ''
     },
@@ -46,6 +46,8 @@ var config = {
         // минимизирует id, которые используются webpack для подгрузки чанков и прочего
         new webpack.optimize.OccurrenceOrderPlugin(),
 
+        new webpack.HashedModuleIdsPlugin(),
+
         new webpack.DefinePlugin({
             'NODE_ENV': JSON.stringify(NODE_ENV),
             'process.env': {
@@ -58,9 +60,18 @@ var config = {
             name: 'vendor',
             // filename: 'vendor-[hash].js',
             minChunks: function (module) {
-                return module.context && module.context.indexOf('node_modules') !== -1;
+                return module.context && module.context.includes('node_modules');
             },
         }),
+        // This plugin must come after the vendor one (because webpack
+        // includes runtime into the last chunk)
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'runtime',
+            // minChunks: Infinity means that no app modules
+            // will be included into this chunk
+            minChunks: Infinity,
+        }),
+
 
         new ExtractTextPlugin({
           filename: '[name].[contenthash].css',
