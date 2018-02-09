@@ -109,7 +109,16 @@ var config = {
                 exclude: [/public/],
                 use:
                     !isProduction
-                        ? ['style-loader', 'css-loader', 'postcss-loader']
+                        ? [
+                            'style-loader',
+                            {
+                                loader: 'css-loader', 
+                                options:{
+                                    minimize: true
+                                }
+                            },                            
+                            'postcss-loader'
+                        ]
                         : ExtractTextPlugin.extract({
                             fallback: 'style-loader',
                             use: ['css-loader', 'postcss-loader']
