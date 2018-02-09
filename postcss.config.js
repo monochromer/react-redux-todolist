@@ -1,24 +1,34 @@
 const NODE_ENV = (process.env.NODE_ENV || 'development').trim();
 const isProduction = NODE_ENV === 'production';
 
+const plugins = {
+    'autoprefixer': require('autoprefixer')(),
+    'cssnano': require('cssnano')({
+        safe: true,
+        Transforms: {
+            discardComments: {
+                removeAll: true
+            }
+        }
+    })
+};
+
+const commonPlugins = [
+    plugins['autoprefixer']
+];
+
+const envPlugins = {
+    'production': [
+        plugins['cssnano']
+    ],
+    'development': []
+};
+
 var config = {
     plugins: [
-        require('autoprefixer')({
-            browsers: ['last 4 versions', '> 1%', 'IE 9']
-        })
-    ].concat(isProduction
-        ? [
-            require('cssnano')({
-                safe: true,
-                Transforms: {
-                    discardComments: {
-                        removeAll: true
-                    }
-                }
-            })
-        ]
-        : []
-    )
+        ...commonPlugins,
+        ...envPlugins[NODE_ENV]
+    ]
 };
 
 module.exports = config;
