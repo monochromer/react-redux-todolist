@@ -92,7 +92,9 @@ var config = {
             }
         }),
 
-        new ManifestPlugin()
+        new ManifestPlugin(),
+
+        new webpack.optimize.ModuleConcatenationPlugin()
     ] : []),
 
     module: {
