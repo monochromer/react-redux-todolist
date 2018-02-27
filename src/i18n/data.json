@@ -1,0 +1,34 @@
+{
+    "create": {
+        "en": "Create",
+        "ru": "Создать"
+    },
+    "create-placeholder": {
+        "en": "Enter task text...",
+        "ru": "Введите описание задачи..."
+    },
+    "delete-todo": {
+        "en": "Delete Todo",
+        "ru": "Удалить задачу"
+    },
+    "filter-all": {
+        "en": "All",
+        "ru": "Все"
+    },
+    "filter-active": {
+        "en": "Active",
+        "ru": "В процессе"
+    },
+    "filter-completed": {
+        "en": "Completed",
+        "ru": "Завершенные"
+    },
+    "empty-list": {
+        "en": "List is empty",
+        "ru": "Список пуст"
+    },
+    "select-lang": {
+        "en": "ui language",
+        "ru": "язык интерфейса"
+    }
+}

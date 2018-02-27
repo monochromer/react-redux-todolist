@@ -1,0 +1,78 @@
+.SettingsArea {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    color: #8c8c8c;
+}
+
+    .SettingsArea-Overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        visibility: hidden;
+        background: hsla(199, 10%, 34%, 0.35);;
+        transition: .3s;
+        cursor: pointer;
+    }
+
+    .SettingsArea-Panel {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        transform: translateX(100%);
+        padding: 1em;
+        border: 1px solid #ececec;
+        background: #fff;
+        border-radius: 2px;
+        transition: .3s;
+        box-shadow:
+            -2px -2px 8px rgba(0,0,0,.1);
+    }
+
+    .SettingsArea-Set {
+        border: 1px solid #d8d8d8;
+    }
+
+    .SettingsArea-Toggle {
+        position: absolute;
+        bottom: 0;
+        right: 100%;
+        margin-right:  1em;
+        margin-bottom: 1em;
+        padding: 0.5em;
+        border: 1px solid #d8d8d8;
+        font-size: 14px;
+        color: #5c6970;
+        background: #f8f8f8;
+        border-radius: 2px;
+        transition: .2s;
+    }
+
+    .SettingsArea-Toggle svg {
+        fill: currentColor;
+    }
+
+        .SettingsArea-Toggle:hover {
+            border-color: #b0b0b0;
+        }
+
+        .SettingsArea-Toggle:focus {
+            outline: 0;
+            border-color: #1cb9ff;
+            box-shadow: 0 0 0 3px rgba(28, 185, 255, 0.3);
+        }
+
+    .SettingsArea_active .SettingsArea-Overlay {
+        opacity: 1;
+        visibility: visible;
+        backdrop-filter: blur(2px);
+    }
+
+    .SettingsArea_active .SettingsArea-Panel {
+        transform: translateX(0);
+    }
+

@@ -1,12 +1,22 @@
-import React, { PureComponent } from 'react';
+import React, { Component, PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import './AddForm.css';
 import TextInput from 'components/TextInput';
 
-class AddForm extends PureComponent {
+class AddForm extends Component {
+    constructor(props, context) {
+        super(props, context);
+    }
 
     componentDidMount() {
         this.formInputRef.focus();
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        const cond = this.context.lang !== nextContext.lang;
+        console.log(cond);
+        return cond;
     }
 
     getInputRef = c => this.formInputRef = c;
@@ -21,6 +31,7 @@ class AddForm extends PureComponent {
     }
 
     render() {
+        const { locale: l } = this.context;
         return (
             <form
                 className='AddForm'
@@ -30,12 +41,22 @@ class AddForm extends PureComponent {
                     className='AddForm-Input'
                     inputRef={this.getInputRef}
                     isFull={true}
-                    placeholder="Введите описание задачи..."
+                    placeholder={l('create-placeholder')}
                 />
-                <button className='AddForm-Button' type='submit'>Создать</button>
+                <button
+                    className='AddForm-Button'
+                    type='submit'
+                >
+                    {l('create')}
+                </button>
             </form>
         );
     }
+};
+
+AddForm.contextTypes = {
+    locale: PropTypes.func,
+    lang: PropTypes.string
 }
 
 export default AddForm;

@@ -3,9 +3,9 @@ import React, { Fragment } from 'react';
 import FilterItemContainer from 'containers/FilterItemContainer';
 
 const filterData = [
-    { filter: "ALL", text: "Все" },
-    { filter: "COMPLETED", text: "Завершенные" },
-    { filter: "ACTIVE", text: "В процессе" }
+    { filter: "ALL", text: "filter-all" },
+    { filter: "COMPLETED", text: "filter-completed" },
+    { filter: "ACTIVE", text: "filter-active" }
 ];
 
 const FilterPanel = () => {

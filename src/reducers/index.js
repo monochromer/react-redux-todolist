@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { todo, todosById, todosIds } from './todos';
 import { filter } from './filter';
+import { lang } from './lang';
 import * as filterTypes from 'constants/filterConstants';
 import { createSelector } from 'reselect'
 
@@ -41,7 +42,8 @@ const memoFilter = createSelector(
 const rootReducer = combineReducers({
     todosById,
     todosIds,
-    filter
+    filter,
+    lang
 });
 
 export default rootReducer;

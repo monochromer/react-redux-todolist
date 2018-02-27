@@ -14,7 +14,8 @@ var config = {
         bundle: './'
     },
     output: {
-        filename: '[name].[chunkhash].js',
+        // filename: '[name].[chunkhash].js',
+        filename: '[name].[chunk].js',
         path: path.join(__dirname, 'public'),
         publicPath: ''
     },
@@ -71,7 +72,6 @@ var config = {
             // will be included into this chunk
             minChunks: Infinity,
         }),
-
 
         new ExtractTextPlugin({
           filename: '[name].[contenthash].css',

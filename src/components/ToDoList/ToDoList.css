@@ -12,12 +12,10 @@
 
     .ToDoList-Item {}
 
-    .ToDoList:empty::before,
-    .ToDoList > div:empty::before {
-        content: 'Список пуст';
+    .ToDoList-Empty {
         margin: auto;
-        padding: 0.5em 1em;
         display: list-item;
+        padding: 0.5em 1em;
         text-align: center;
         font-size: 14px;
         color: #a0a0a0;

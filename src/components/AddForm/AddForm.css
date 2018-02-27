@@ -13,7 +13,7 @@
 
     .AddForm-Button {
         margin-left: 1em;
-        flex: 0 0 auto;
+        flex: 0 0 100px;
         padding: 0.25em 1.5em;
         border: 1px solid #d8d8d8;
         font-size: 14px;

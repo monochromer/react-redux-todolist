@@ -1,5 +1,6 @@
 import React, { PureComponent, Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import FlipMove from 'react-flip-move';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -100,6 +101,9 @@ class ToDoListItem extends PureComponent {
 };
 
 class ToDoList extends PureComponent {
+    constructor(props, context) {
+        super(props, context);
+    }
 
     componentDidMount() {
         this.ps = new PerfectScrollbar(this.list);
@@ -119,17 +123,24 @@ class ToDoList extends PureComponent {
     render() {
         const deleteCallback = this.props.todoActions.deleteTodo;
         const changeCallback = this.props.todoActions.toggleTodo;
+        const todos = this.props.todos;
 
-        const tasks = this.props.todos.map((todo) => {
-            return (
-                <ToDoListItem
-                    key={todo.id}
-                    todo={todo}
-                    onDelete={deleteCallback}
-                    onChange={changeCallback}
-                />
-            )
-        });
+        const tasks = (todos.length > 0)
+            ? todos.map((todo) => {
+                return (
+                    <ToDoListItem
+                        key={todo.id}
+                        todo={todo}
+                        onDelete={deleteCallback}
+                        onChange={changeCallback}
+                    />
+                )
+            })
+            : (
+                <div className='ToDoList-Empty'>
+                    {this.context.locale('empty-list')}
+                </div>
+            );
 
         return (
             <div ref={this.getListRef} className='ToDoList'>
@@ -145,5 +156,10 @@ class ToDoList extends PureComponent {
         )
     }
 };
+
+ToDoList.contextTypes = {
+    lang: PropTypes.string,
+    locale: PropTypes.func
+}
 
 export default ToDoList;

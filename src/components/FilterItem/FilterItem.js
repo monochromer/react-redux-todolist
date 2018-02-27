@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import './FilterItem.css';
 import Control from 'components/Controls';
 
-const FilterItem = (props) => {
+const FilterItem = (props, context) => {
     return (
         <div className='FilterItem'>
             <Control
-                text={props.text}
+                text={context.locale(props.text)}
                 value={props.filter}
                 type='radio'
                 name='todo-filter'
@@ -19,6 +20,11 @@ const FilterItem = (props) => {
             </div>
         </div>
     );
+};
+
+FilterItem.contextTypes = {
+    lang: PropTypes.string,
+    locale: PropTypes.func
 }
 
 export default FilterItem
