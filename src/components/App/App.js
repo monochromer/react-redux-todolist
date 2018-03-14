@@ -2,6 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 
+import i18n from 'i18n';
+
 import './App.css';
 
 import AddFormContainer from 'containers/AddFormContainer';
@@ -21,8 +23,6 @@ const App = (props, context) => {
     )
 };
 
-App.contextTypes = {
-    lang: PropTypes.string
-};
+i18n.injectLangContextTypes(App);
 
 export default App;

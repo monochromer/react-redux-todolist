@@ -1,0 +1,11 @@
+.ButtonGroup {
+    display: flex;
+}
+
+    .ButtonGroup-Item {
+        flex: 1 1 0%;
+    }
+
+        .ButtonGroup-Item + .ButtonGroup-Item {
+            margin-left: 1em;
+        }

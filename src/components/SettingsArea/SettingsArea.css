@@ -24,6 +24,8 @@
         right: 0;
         bottom: 0;
         transform: translateX(100%);
+        box-sizing: border-box;
+        width: 240px;
         padding: 1em;
         border: 1px solid #ececec;
         background: #fff;

@@ -2,32 +2,47 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { langChange } from '../../actions/langActions';
-import Control from 'components/Controls'
+import Control from 'components/Controls';
+import Button from 'components/Button';
+import ButtonGroup from 'components/ButtonGroup';
 
 class LangContainer extends Component {
+    get langs() {
+        return ['ru', 'en'];
+    }
+
+    changeLang = (lang) => this.props.onChange(lang)
+
+    onClick = (e) => {
+        const { name, value } = e.target;
+        if (name !== 'lang') return;
+        this.changeLang(value);
+        e.preventDefault();
+    }
+
     render() {
-        const { lang, onChange } = this.props;
+        const { lang: currentLang, onChange } = this.props;
         const handleChange = (e) => this.props.onChange(e.target.value);
 
         return (
-            <Fragment>
-                <Control
-                    text='ru'
-                    value='ru'
-                    type='radio'
-                    name='lang'
-                    checked={lang === 'ru'}
-                    onChange={handleChange}
-                />
-                <Control
-                    text='en'
-                    value='en'
-                    type='radio'
-                    name='lang'
-                    checked={lang === 'en'}
-                    onChange={handleChange}
-                />
-            </Fragment>
+            <ButtonGroup>
+                {
+                    this.langs.map(lang => {
+                        return (
+                            <Button
+                                key={lang}
+                                className='ButtonGroup-Item'
+                                name='lang'
+                                value={lang}
+                                onClick={this.onClick}
+                                active={lang === currentLang}
+                            >
+                                {lang}
+                            </Button>
+                        )
+                    })
+                }
+            </ButtonGroup>
         )
     }
 }

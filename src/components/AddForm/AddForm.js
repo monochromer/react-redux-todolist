@@ -1,22 +1,14 @@
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import i18n from 'i18n';
+
 import './AddForm.css';
 import TextInput from 'components/TextInput';
 
 class AddForm extends Component {
-    constructor(props, context) {
-        super(props, context);
-    }
-
     componentDidMount() {
         this.formInputRef.focus();
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        const cond = this.context.lang !== nextContext.lang;
-        console.log(cond);
-        return cond;
     }
 
     getInputRef = c => this.formInputRef = c;
@@ -54,9 +46,6 @@ class AddForm extends Component {
     }
 };
 
-AddForm.contextTypes = {
-    locale: PropTypes.func,
-    lang: PropTypes.string
-}
+i18n.injectLangContextTypes(AddForm);
 
 export default AddForm;

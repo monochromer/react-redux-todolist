@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import i18n from 'i18n';
+
 import LangContainer from 'containers/LangContainer';
 
 import './SettingsArea.css';
@@ -49,9 +51,6 @@ class SettingsArea extends Component {
     }
 }
 
-SettingsArea.contextTypes = {
-    lang: PropTypes.string,
-    locale: PropTypes.func
-}
+i18n.injectLangContextTypes(SettingsArea);
 
 export default SettingsArea;

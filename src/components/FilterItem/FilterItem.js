@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import i18n from 'i18n';
+
 import './FilterItem.css';
 import Control from 'components/Controls';
 
@@ -22,9 +24,6 @@ const FilterItem = (props, context) => {
     );
 };
 
-FilterItem.contextTypes = {
-    lang: PropTypes.string,
-    locale: PropTypes.func
-}
+i18n.injectLangContextTypes(FilterItem);
 
 export default FilterItem

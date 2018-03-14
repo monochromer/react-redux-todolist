@@ -6,6 +6,8 @@ import FlipMove from 'react-flip-move';
 import PerfectScrollbar from 'perfect-scrollbar';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 
+import i18n from 'i18n';
+
 import './ToDoList.css';
 import Todo from 'components/Todo';
 
@@ -157,9 +159,6 @@ class ToDoList extends PureComponent {
     }
 };
 
-ToDoList.contextTypes = {
-    lang: PropTypes.string,
-    locale: PropTypes.func
-}
+i18n.injectLangContextTypes(ToDoList);
 
 export default ToDoList;

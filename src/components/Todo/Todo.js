@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import i18n from 'i18n';
+
 import Control from 'components/Controls';
 import './Todo.css';
 
@@ -25,8 +27,6 @@ const Todo = (props, context) => {
     );
 };
 
-Todo.contextTypes = {
-    locale: PropTypes.func
-}
+i18n.injectLangContextTypes(Todo);
 
 export default Todo;
