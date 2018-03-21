@@ -1,4 +1,4 @@
-import { langReducer } from './lang';
+import { lang as langReducer } from './lang';
 import * as types from 'constants/langConstants';
 
 const initialState = 'ru';
