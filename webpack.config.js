@@ -9,13 +9,13 @@ const isProduction = NODE_ENV === 'production';
 const isDevelopment = !isProduction;
 
 var config = {
+    mode: NODE_ENV,
     context: path.join(__dirname, 'src'),
     entry: {
         bundle: './'
     },
     output: {
-        // filename: '[name].[chunkhash].js',
-        filename: '[name].[chunk].js',
+        filename: '[name].js',
         path: path.join(__dirname, 'public'),
         publicPath: ''
     },
@@ -40,37 +40,28 @@ var config = {
 
     devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
 
+    optimization: {
+        minimize: isProduction,
+        noEmitOnErrors: true,
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
+
     plugins: [
         // не дает перезаписать скрипты при наличии в них ошибок
-        new webpack.NoEmitOnErrorsPlugin(),
+        // new webpack.NoEmitOnErrorsPlugin(),
 
         // минимизирует id, которые используются webpack для подгрузки чанков и прочего
-        new webpack.optimize.OccurrenceOrderPlugin(),
+        // new webpack.optimize.OccurrenceOrderPlugin(),
 
-        new webpack.HashedModuleIdsPlugin(),
+        // new webpack.HashedModuleIdsPlugin(),
 
         new webpack.DefinePlugin({
             'NODE_ENV': JSON.stringify(NODE_ENV),
             'process.env': {
                 NODE_ENV: JSON.stringify(NODE_ENV)
             }
-        }),
-
-        // выделение общего кода из точек входа
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            // filename: 'vendor-[hash].js',
-            minChunks: function (module) {
-                return module.context && module.context.includes('node_modules');
-            },
-        }),
-        // This plugin must come after the vendor one (because webpack
-        // includes runtime into the last chunk)
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'runtime',
-            // minChunks: Infinity means that no app modules
-            // will be included into this chunk
-            minChunks: Infinity,
         }),
 
         new ExtractTextPlugin({
@@ -87,25 +78,9 @@ var config = {
             }
         })
     ].concat(isProduction ? [
-        new webpack.optimize.UglifyJsPlugin({
-            beautify: false,
-            comments: false,
-            mangle: { screw_ie8 : true },
-            compress: {
-                screw_ie8: true,
-                sequences : true,
-                booleans : true,
-                loops : true,
-                unused : true,
-                warnings : false,
-                drop_console: true,
-                unsafe : true
-            }
-        }),
-
         new ManifestPlugin(),
 
-        new webpack.optimize.ModuleConcatenationPlugin()
+        // new webpack.optimize.ModuleConcatenationPlugin()
     ] : []),
 
     module: {
