@@ -11,3 +11,29 @@ render(
     <Root store={store} />,
     document.getElementById('mount-point')
 );
+
+(function() {
+    const serviceWorker = navigator.serviceWorker;
+    if (!serviceWorker) return;
+
+    function onRegisterSuccess(registration) {
+        registration.onupdatefound = function() {
+            registration.installing.onstatechange = function() {
+                console.log('state: ', this.state);
+            }
+        }
+    }
+
+    function onRegisterError(error) {
+        console.error(error);
+    }
+
+    window.addEventListener('load', function() {
+        serviceWorker
+            .register('sw.js', {
+                scope: '/'
+            })
+            .then(onRegisterSuccess)
+            .catch(onRegisterError);
+    });
+})();
