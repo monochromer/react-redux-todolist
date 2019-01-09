@@ -30,9 +30,7 @@ render(
 
     window.addEventListener('load', function() {
         serviceWorker
-            .register('sw.js', {
-                scope: '/'
-            })
+            .register('sw.js')
             .then(onRegisterSuccess)
             .catch(onRegisterError);
     });
