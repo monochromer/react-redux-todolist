@@ -1,7 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 const { promisify } = require('util');
-const babel = require("babel-core");
+
+const fse = require('fs-extra')
+const babel = require("@babel/core");
 
 (async () => {
     try {
@@ -19,9 +21,17 @@ const babel = require("babel-core");
         // путь хранения всех собранных файлов
         const publicDir = path.resolve(ROOT_PATH, 'public');
 
+        // путь хранения исходников иконок и манифеста
+        const iconsSrcDir = path.resolve(ROOT_PATH, 'src', 'icons');
+
+        // путь хранения собранных иконок и манифеста
+        const iconsDir = path.resolve(ROOT_PATH, 'public', 'icons');
+
         const VERSION = require(pacakgeFilePath).version;
         const ServiceWorkerSource = await promisify(fs.readFile)(swFilePath, 'utf8');
         const files = await promisify(fs.readdir)(publicDir);
+
+        await fse.copy(iconsSrcDir, iconsDir);
 
         const swBuildSource = `
             const CACHE_NAME = '${VERSION}';
