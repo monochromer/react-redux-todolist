@@ -15,8 +15,11 @@
 .FilterItem {
     margin: 0 .25em;
     position: relative;
+    flex: 0 0 auto;
+    flex-basis: calc(560px * 9999 - 100% * 9999);
     display: flex;
     align-items: flex-start;
+    white-space: nowrap;
 }
 
     .FilterItem-Count {
