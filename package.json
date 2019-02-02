@@ -1,6 +1,6 @@
 {
   "name": "react-redux-todolist",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Пример приложения 'Список дел' на React и Redux",
   "author": "monochromer@mail.ru",
   "homepage": "https://github.com/monochromer/react-redux-todolist#readme",
