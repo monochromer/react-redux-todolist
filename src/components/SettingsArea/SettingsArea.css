@@ -31,8 +31,6 @@
         background: #fff;
         border-radius: 2px;
         transition: .3s;
-        box-shadow:
-            -2px -2px 8px rgba(0,0,0,.1);
     }
 
     .SettingsArea-Set {
@@ -76,5 +74,6 @@
 
     .SettingsArea_active .SettingsArea-Panel {
         transform: translateX(0);
+        box-shadow: -2px -2px 8px rgba(0,0,0,.1);
     }
 
