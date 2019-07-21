@@ -65,7 +65,7 @@ var config = {
         }),
 
         new ExtractTextPlugin({
-          filename: '[name].[contenthash].css',
+          filename: '[name].[hash].css',
           disable: !isProduction,
           allChunks: true
         }),
